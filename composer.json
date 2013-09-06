@@ -1,0 +1,42 @@
+{
+    "name": "stefanotorresi/my-popup",
+    "description": "A very simple Zend Framework 2 module to handle cookie timed popups",
+    "type": "library",
+    "keywords": [
+        "zf2",
+        "zend",
+        "module",
+        "popup",
+        "cookie"
+    ],
+    "homepage": "https://github.com/stefanotorresi/MyPopup",
+    "authors": [
+        {
+            "name": "Stefano Torresi",
+            "email": "webdev@stefanotorresi.it",
+            "homepage": "http://stefanotorresi.it"
+        }
+    ],
+    "require": {
+        "zendframework/zend-view": "2.*",
+        "zendframework/zend-http": "2.*",
+        "zendframework/zend-modulemanager": "2.*"
+    },
+    "require-dev": {
+        "satooshi/php-coveralls":    "~0.6"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-0": {
+            "MyPopup": "src/"
+        },
+        "classmap": [
+            "./"
+        ]
+    },
+    "license": "MIT"
+}
