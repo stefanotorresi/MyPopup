@@ -1,0 +1,10 @@
+<?php
+
+namespace MyPopup;
+
+return [
+    'modules' => [
+        __NAMESPACE__,
+    ],
+    'module_listener_options' => [],
+];

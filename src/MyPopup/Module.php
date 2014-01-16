@@ -8,49 +8,66 @@
 
 namespace MyPopup;
 
+use Zend\Http\Header\SetCookie;
 use Zend\Http\Request as HttpRequest;
+use Zend\Http\Response as HttpResponse;
 use Zend\Mvc\MvcEvent;
 use Zend\ModuleManager\Feature;
 
 class Module implements
     Feature\AutoloaderProviderInterface,
-    Feature\ConfigProviderInterface,
-    Feature\ViewHelperProviderInterface
+    Feature\ConfigProviderInterface
 {
     /**
-     * @param MvcEvent $e
+     * @param MvcEvent $event
      */
-    public function onBootstrap(MvcEvent $e)
+    public function onBootstrap(MvcEvent $event)
     {
-        $app = $e->getApplication();
+        $app = $event->getApplication();
         $eventManager = $app->getEventManager();
         $eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'initPopup'), -100);
+        $eventManager->attach(MvcEvent::EVENT_FINISH, array($this, 'showPopup'), -9999);
     }
 
     /**
-     * @param MvcEvent $e
+     * @param MvcEvent $event
      */
-    public function initPopup(MvcEvent $e)
+    public function initPopup(MvcEvent $event)
     {
-        $request = $e->getRequest();
+        $request = $event->getRequest();
+        $response = $event->getResponse();
 
-        if ( ! $request instanceof HttpRequest) {
+        if ( ! $request instanceof HttpRequest || ! $response instanceof HttpResponse) {
             return;
         }
 
-        $cookie = $request->getCookie();
-
-        $serviceManager = $e->getApplication()->getServiceManager();
-
-        $config = $serviceManager->get('config');
-        $timeout = $config[__NAMESPACE__]['timeout'];
+        $serviceManager = $event->getApplication()->getServiceManager();
+        $config         = $serviceManager->get('config')[__NAMESPACE__];
+        $cookie         = $request->getCookie();
 
         if ($enable = !isset($cookie->disablePopup)) {
-            setcookie('disablePopup', true, time() + $timeout);
+            $cookie = new SetCookie('disablePopup', true, time() + $config['timeout']);
+            $response->getHeaders()->addHeader($cookie);
         }
 
-        $layout = $e->getViewModel();
-        $layout->showPopup = isset($layout->showPopup) ? $layout->showPopup && $enable : $enable;
+        $event->setParam('enablePopup', $enable);
+    }
+
+    public function showPopup(MvcEvent $event)
+    {
+        if (! $event->getParam('enablePopup')) {
+            return;
+        }
+
+        $serviceManager = $event->getApplication()->getServiceManager();
+        $renderer       = $serviceManager->get('ViewRenderer');
+        $config         = $serviceManager->get('config')[__NAMESPACE__];
+        $response       = $event->getResponse();
+
+        $popup = $renderer->render($config['template']);
+
+        $injected = preg_replace('/<\/body>/i', $popup . "\n</body>", $response->getContent(), 1);
+        $response->setContent($injected);
     }
 
     /**
@@ -58,16 +75,16 @@ class Module implements
      */
     public function getAutoloaderConfig()
     {
-        return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
+        return [
+            'Zend\Loader\ClassMapAutoloader' => [
                 __DIR__ . '/../../autoload_classmap.php',
-            ),
-            'Zend\Loader\StandardAutoloader' => array(
-                'namespaces' => array(
+            ],
+            'Zend\Loader\StandardAutoloader' => [
+                'namespaces' => [
                     __NAMESPACE__  => __DIR__
-                ),
-            ),
-        );
+                ],
+            ],
+        ];
     }
 
     /**
@@ -75,25 +92,11 @@ class Module implements
      */
     public function getConfig()
     {
-        return array(
-            __NAMESPACE__ => array(
-                'timeout' => 60 * 60 * 24 * 7
-            ),
-        );
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getViewHelperConfig()
-    {
-        return array(
-            'invokables' => array(
-                 __NAMESPACE__ . '\ViewHelper' => __NAMESPACE__ . '\ViewHelper',
-            ),
-            'aliases' => array(
-                'myPopup' => __NAMESPACE__ . '\ViewHelper',
-            ),
-        );
+        return [
+            __NAMESPACE__ => [
+                'timeout' => 60 * 60 * 24 * 7,
+                'template' => 'my-popup/popup'
+            ],
+        ];
     }
 }
