@@ -1,7 +1,8 @@
 #MyPopup
-[![Latest Unstable Version](https://poser.pugx.org/stefanotorresi/my-pages/v/unstable.png)](https://packagist.org/packages/stefanotorresi/my-pages)
-[![Build Status](https://travis-ci.org/stefanotorresi/MyPages.png?branch=master)](https://travis-ci.org/stefanotorresi/MyPages)
-[![Coverage Status](https://coveralls.io/repos/stefanotorresi/MyPages/badge.png?branch=master)](https://coveralls.io/r/stefanotorresi/MyPages?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/stefanotorresi/my-popup/v/stable.png)](https://packagist.org/packages/stefanotorresi/my-popup)
+[![Latest Unstable Version](https://poser.pugx.org/stefanotorresi/my-popup/v/unstable.png)](https://packagist.org/packages/stefanotorresi/my-popup)
+[![Build Status](https://travis-ci.org/stefanotorresi/MyPopup.png?branch=master)](https://travis-ci.org/stefanotorresi/MyPopup)
+[![Coverage Status](https://coveralls.io/repos/stefanotorresi/MyPopup/badge.png?branch=master)](https://coveralls.io/r/stefanotorresi/MyPopup?branch=master)
 
 A very simple Zend Framework 2 module to handle cookie timed popups.
 
