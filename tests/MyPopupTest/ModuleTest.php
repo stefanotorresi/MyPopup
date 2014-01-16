@@ -65,7 +65,7 @@ class ModuleTest extends TestCase
 
         /** @var SetCookie $setCookieHeader */
         $setCookieHeader = null;
-        foreach($response->getHeaders()->get('Set-Cookie') as $header) {
+        foreach ($response->getHeaders()->get('Set-Cookie') as $header) {
             if ($header->getName() == 'disablePopup') {
                 $setCookieHeader = $header;
                 break;

@@ -37,7 +37,7 @@ class Module implements
         $request = $event->getRequest();
         $response = $event->getResponse();
 
-        if ( ! $request instanceof HttpRequest || ! $response instanceof HttpResponse) {
+        if (! $request instanceof HttpRequest || ! $response instanceof HttpResponse) {
             return;
         }
 
