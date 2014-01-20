@@ -27,8 +27,9 @@
         }
     },
     "autoload": {
-        "psr-0": {
-            "MyPopup": "src/"
+        "psr-4": {
+            "MyPopup\\": "src/",
+            "MyPopup\\Test\\": "tests/Test"
         },
         "classmap": [
             "./"

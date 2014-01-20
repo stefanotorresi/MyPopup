@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="init_bootstrap.php" colors="true">
-    <testsuite name="MyPopup Test Suite">
-        <directory>./MyPopupTest</directory>
+    <testsuite>
+        <directory>./Test</directory>
     </testsuite>
 </phpunit>

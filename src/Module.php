@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright (c) 2013 Stefano Torresi (http://stefanotorresi.it)
  * See the file LICENSE.txt for copying permission.
@@ -77,7 +76,7 @@ class Module implements
     {
         return [
             'Zend\Loader\ClassMapAutoloader' => [
-                __DIR__ . '/../../autoload_classmap.php',
+                __DIR__ . '/../autoload_classmap.php',
             ],
             'Zend\Loader\StandardAutoloader' => [
                 'namespaces' => [

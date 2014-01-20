@@ -5,7 +5,7 @@
  * ************************************************
  */
 
-namespace MyPopupTest;
+namespace MyPopup\Test;
 
 use Composer\Autoload\ClassLoader;
 use Zend\ModuleManager\ModuleManager;

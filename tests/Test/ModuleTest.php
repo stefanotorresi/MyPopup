@@ -5,7 +5,7 @@
  * ************************************************
  */
 
-namespace MyPopupTest;
+namespace MyPopup\Test;
 
 use MyPopup\Module;
 use PHPUnit_Framework_TestCase as TestCase;

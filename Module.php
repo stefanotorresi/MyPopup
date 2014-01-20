@@ -1,11 +1,8 @@
 <?php
-
 /**
  * This file is placed here for compatibility with Zendframework 2's ModuleManager.
  * It allows usage of this module even without composer.
- * The original Module.php is in 'src/{ModuleNamespace}' in order to respect PSR-0
+ * The original Module.php is in 'src' in order to respect PSR-4
  */
 
-namespace MyPopup;
-
-require_once __DIR__ . '/src/'.__NAMESPACE__.'/Module.php';
+require_once __DIR__ . '/src/Module.php';
