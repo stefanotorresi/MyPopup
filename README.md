@@ -31,4 +31,4 @@ The module supports two configuration settings:
 ]
 ```
 
-You will have to take care of registering the template you want to use in the zf2 `ViewManager` see (http://framework.zend.com/manual/2.2/en/modules/zend.view.quick-start.html#configuration).
+You will have to take care of registering the template you want to use in the zf2 [`ViewManager`](http://framework.zend.com/manual/2.2/en/modules/zend.view.quick-start.html#configuration).
