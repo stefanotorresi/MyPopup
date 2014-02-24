@@ -24,8 +24,8 @@ class Module implements
     {
         $app = $event->getApplication();
         $eventManager = $app->getEventManager();
-        $eventManager->attach(MvcEvent::EVENT_DISPATCH, array($this, 'initPopup'), -100);
-        $eventManager->attach(MvcEvent::EVENT_FINISH, array($this, 'showPopup'), -9999);
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH, [$this, 'initPopup'], -100);
+        $eventManager->attach(MvcEvent::EVENT_FINISH, [$this, 'showPopup'], -9999);
     }
 
     /**
