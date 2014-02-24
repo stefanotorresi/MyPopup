@@ -38,10 +38,10 @@ class Bootstrap
         $loader->add(__NAMESPACE__, dirname(__DIR__));
         $loader->add('ZendTest', $vendorPath . '/zendframework/zendframework/tests');
 
-        if (file_exists('./test.application.config.php')) {
-            $config = require './test.application.config.php';
+        if (file_exists('./tests/test.application.config.php')) {
+            $config = require './tests/test.application.config.php';
         } else {
-            $config = require './test.application.config.php.dist';
+            $config = require './tests/test.application.config.php.dist';
         }
 
         static::setConfig($config);
